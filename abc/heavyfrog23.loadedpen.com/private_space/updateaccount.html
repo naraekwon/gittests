@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='styles.css'>
+	</head>
+	<body>
+		<header>
+			<h1>Update Account</h1>
+		</header>
+		<main> 
+			<form action='/~/private_space/account/profile' onsubmit='send();'>
+				<input type='text' name='name' placeholder='Name' value='{{name}}'>
+				<input type='text' name='age' placeholder='Age'  value='{{age}}'>
+				<input type='text' name='phone' placeholder='Phone' value='{{phone}}'>
+				<input type='text' name='grade' placeholder='Grade'  value='{{grade}}'>
+				<input type='file' name='profile' accept='image/*' onchange='preview()'>
+				<img src='{{profile}}'>
+				<button>Submit</button>
+				<input type='hidden' name='redirecturl' value='/~/private_space/account'>
+			</form>
+		</main>
+		<footer>  
+			My Private Space
+		</footer>
+		<script>
+			function preview() {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {
+			        document.querySelector('img').src = e.target.result;
+			    };
+			    reader.readAsDataURL(event.target.files[0]);
+			};
+			
+			async function send() {
+				event.preventDefault();
+				var form = event.target;
+				var formData = new FormData(form);
+				var resp = await fetch(form.action, {
+					method: 'PATCH'
+					, body: formData
+				})
+				var json = await resp.json();
+				console.log(json)
+				
+			}
+		</script>
+	</body>
+</html>

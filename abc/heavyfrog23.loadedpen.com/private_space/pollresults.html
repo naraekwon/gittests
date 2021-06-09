@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			img {
+				width: 200px;
+			}
+		</style>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script>
+			async function getdata() {
+				const resp = await fetch('/~/private_space/open/campingpoll?all=true')
+					, json = await resp.json()
+					, agg = json.reduce((o, r) => {
+						o[r.data.camping] = o[r.data.camping] || 0;
+						o[r.data.camping] += 1;
+						return o
+					}, {})
+					, images = json.filter(r => r.data.img).map(r => `<img src='${r.data.img}'>`)
+				;
+				
+				var data = [{
+					values: Object.values(agg),
+					labels: Object.keys(agg),
+					type: 'pie'
+				}];
+				
+				var layout = {
+					height: 400,
+					width: 500
+				};
+				
+				Plotly.newPlot('plot', data, layout);
+				
+				document.querySelector('#gallery').innerHTML = images.join('\n');
+			}
+		</script>
+	</head>
+	<body onload='getdata()'>
+		<div id='plot'></div>
+		<a href='/~/private_space/quickpoll'>Go Back</a>
+		<div id='gallery'>
+			
+		</div>
+	</body>
+</html>

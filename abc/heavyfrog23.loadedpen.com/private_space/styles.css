@@ -1,0 +1,28 @@
+body {
+	display:grid;
+	grid-template-rows: 150px auto 40px;
+	margin: 0;
+	height: 100vh;
+}
+
+header, main, footer, form {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+main, form {
+	flex-direction:column;
+}
+
+input, textarea {
+	margin: 20px;
+	width:300px;
+	max-width:80vw;
+	padding:20px 10px;
+	box-sizing:border-box;
+}
+
+textarea {
+	height:200px;
+}

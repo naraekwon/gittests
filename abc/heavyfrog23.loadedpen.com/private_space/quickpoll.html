@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {
+				display:flex;
+				align-items:center;
+				justify-content:center;
+				flex-direction:column;
+				margin:0;
+				height:100vh;
+			}
+			
+			form {
+				display:flex;
+				align-items:center;
+				justify-content:space-evenly;
+				flex-direction:column;
+				height: 300px;
+			}
+			
+			div {
+				display:grid;
+				grid-template-columns: 25px auto;
+				grid-template-rows:1.5em;
+				grid-gap: 5px;
+			}
+			
+			form * {
+				cursor:pointer;
+			}
+			
+			button {
+				
+			}
+		</style>
+	</head>
+	<body>
+		<h3>Quick Poll</h3>
+		<h1>⛺ 
+			When do you want to go camping?
+			🦉
+		</h1>
+		
+		<form action='/~/private_space/open/campingpoll' method='POST' enctype='multipart/form-data'>
+			<div>
+				<input type='checkbox' name='camping' value='May 23, 2021' id='a1' checked>
+				<label for='a1'>May 23, 2021</label>
+				<input type='checkbox' name='camping' value='June 8, 2021' id='a2'>
+				<label for='a2'>June 8, 2021</label>
+				<input type='checkbox' name='camping' value='June 18, 2021' id='a3'>
+				<label for='a3'>June 18, 2021</label>
+				<input type='checkbox' name='camping' value='July 14, 2021' id='a4'>
+				<label for='a4'>July 14, 2021</label>
+			</div>
+			<label for='gif'>Favorite Gif</label>
+			<input type='file' name='img' accept='image/*' id='gif'>
+			<button>Submit</button>
+			<input type='hidden' name='redirecturl' value='/~/private_space/pollresults'>
+		</form>
+<script src='/libs/renderer/src/codify.js' lang='css'>
+
+.body {
+	
+}
+
+</script>
+	</body>
+</html>
