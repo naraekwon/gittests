@@ -1,7 +1,7 @@
 Enter Project Name
 ==================
 ## What this project does
-hi
+hi test 
 
 ## Why this project is useful
 
