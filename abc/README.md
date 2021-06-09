@@ -4,9 +4,9 @@ Enter Project Name
 hi test hello
 
 ## Why this project is useful
-not sure what is useful
 
 ## How we built this 
+i dont remember
 
 ## Accomplishments that we are proud of 
 
