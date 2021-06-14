@@ -1,8 +1,0 @@
-{
-	"homepage": "index.html"
-	, "apis": [
-		["/db/todos", "GET", "PERSONAL"]
-		, ["/db/menu", "GET", "PUBLIC"]
-		, ["/db/menu", "GET", "PUBLIC"]
-	]
-}
