@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!--meta tags-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--styling-->
+		<link rel="stylesheet" href="account.css">
+		<!--font link-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+		<script type="module" src="script.js"></script>
+	</head>
+
+	<body>
+		<div class="about-info" style="display: flex;">
+			<div style="margin: auto 10px;"><img src="https://www.carissatang.com/spring2021/cranial-check/assets/patient.png" style="width: 80px;"></div>
+			<div>
+				<h1>Welcome {{name}}</h1>
+				<h3>{{username}}</h3>
+			</div>
+			<a onclick="openNav()" id="open">&#9776;</a>
+		</div>
+		<div style="width:90%; margin:auto;">
+			<section>
+				<div class="table-search">
+					<h2>Recent Results</h2>
+				</div>
+				<div class="latest">
+					<table>
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Age</th>
+								<th>Symptoms</th>
+								<th>Results</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{#account.data}}
+										<div class="date-list">{{date}}</div>
+									{{/account.data}}</td>
+								<td>{{#account.data}}
+										<div class="age-list">{{age}}</div>
+									{{/account.data}}
+								</td>
+								<td>
+									<div class="sy" id="symptoms-display">{{#account.data}}
+											<div class="symptoms-list">{{symptom}}</div>
+									</div>
+									{{/account.data}}
+								</td>
+								<td>
+									<div id="conditions-display"> {{#account.results}}
+											<div class="conditions-list">{{condition}}</div>
+										{{/account.results}}</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+			<!--filter/table search-->
+			<section style="display: flex; justify-content:center; width:100%; margin:0;">
+				<div>
+					<div class="filter">
+						<h2>Filter</h2>
+						<form>
+							<div class="filter-option">
+								<p>Date</p>
+								<div>
+									<input type="radio" value="january" name="month"><label>January</label>
+									<br>
+									<input type="radio" value="february" name="month"><label>February</label>
+									<br>
+									<input type="radio" value="march" name="month"><label>March</label>
+									<br>
+									<input type="radio" value="april" name="month"><label>April</label>
+									<br>
+									<input type="radio" value="may" name="month"><label>May</label>
+									<br>
+									<input type="radio" value="june" name="month"><label>June</label>
+									<br>
+									<input type="radio" value="july" name="month"><label>July</label>
+									<br>
+									<input type="radio" value="august" name="month"><label>August</label>
+									<br>
+									<input type="radio" value="september" name="month"><label>September</label>
+									<br>
+									<input type="radio" value="october" name="month"><label>October</label>
+									<br>
+									<input type="radio" value="november" name="month"><label>Novemvber</label>
+									<br>
+									<input type="radio" value="december" name="month"><label>December</label>
+								</div>
+							</div>
+							<div class="filter-option">
+								<p>Age</p>
+								<!--
+								<div id="age-filter">
+									<input type="radio" value="16"><label>16</label>
+									<br>
+									<input type="radio" value="17"><label>17</label>
+								</div>-->
+								<div>{{#account.data}}<div class="age-history">{{age}}
+								</div>{{/account.data}}</div>
+						</div>
+							<div class="filter-option">
+								<p>Symptoms</p>
+								<div>
+									<input type="text" id="search-results" placeholder="Type to search..." title="Type in a symptom" onkeyup="searchResults()">
+								</div>
+						</div>
+							<div class="filter-option">
+								<p>Results</p>
+								<div>
+									<input type="radio" value="Migraine"><label>Migraine</label>
+									<br>
+									<input type="radio" value="Sinusitis"><label>Sinusitis</label>
+									<br>
+									<input type="radio" value="Cluster Headache"><label>Cluster Headache</label>
+									<br>
+									<input type="radio" value="Tension Headache"><label>Tension Headache</label>
+									<br>
+									<input type="radio" value="Eye Strain"><label>Eye Strain</label>
+									<br>
+									<input type="radio" value="Hemicrania Continua"><label>Hemicrania Continua</label>
+									<br>
+									<input type="radio" value="Post-Traumatic Headaches"><label>Post-Traumatic Headaches</label>
+									<br>
+									<input type="radio" value="Hormone Headaches"><label>Hormone Headaches</label>
+									<br>
+									<input type="radio" value="Medication Overuse / Rebound Headaches"><label>Medication Overuse / Rebound Headaches</label>
+								</div>
+							</div>
+							<input type="submit" value="Submit">
+						</form>
+					</div>
+				</div>
+				<div style="display: flex; flex-direction: column; width:100%;">
+					<div class="table-search">
+						<h2>Past Results</h2>
+						<!--<input type="text" class="search-results" onkeyup="searchResults()" placeholder="Type to search..." title="Type in a name">-->
+					</div>
+					<div class="past scroll">
+						<table id="past-table">
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>Age</th>
+									<th>Symptoms</th>
+									<th>Results</th>
+								</tr>
+							</thead>
+							<tbody id="tbody"></tbody>
+						</table>
+					</div>
+					<a href="/~/spring2021/cranial-check/glossary" target="_blank" class="view-results">What do my results mean?</a>
+				</div>
+			</section>
+		</div>
+		<div class="nav" id="nav">
+			<a id="close" href="javascript:void(0)" onclick="closeNav()">&times;</a>
+			<a class="btn" onclick='logout()'>Log Out</a>
+			<a class="btn" onclick="window.location.href='/~/spring2021/cranial-check/quiz'">Take Quiz</a>
+			<a class="btn" onclick="window.location.href='/~/spring2021/cranial-check/glossary'">Visit Glossary</a>
+		</div>
+		<script src="account.js"></script>
+	</body>
+
+</html>
