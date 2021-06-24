@@ -1,11 +1,4 @@
 {
 	"homepage": "index.html",
-	"apis": [
-		[
-			"/db/data",
-			"GET",
-			"PERSONAL"
-		]
-	],
-	"gitRepo": "cranial-check"
+	"gitRepo": "test"
 }
